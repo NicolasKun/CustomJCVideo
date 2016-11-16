@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="im.unico.customjcvideo.ui.VideoDetail">
+    <RelativeLayout
+        android:visibility="visible"
+        android:id="@+id/vd_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+            <ImageView
+                android:id="@+id/layout_title_iv_back"
+                android:clickable="true"
+                android:scaleType="center"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/fanhui"/>
+            <TextView
+                android:id="@+id/layout_title_tv_title"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="18sp"
+                android:text="视频"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/vd_video_player"/>
+</LinearLayout>
