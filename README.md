@@ -1,0 +1,2 @@
+# CustomJCVideo
+在JCVideoPlayerStandard基础上修改  仿制网易云音乐视频播放界面
