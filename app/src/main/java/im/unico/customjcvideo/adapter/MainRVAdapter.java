@@ -39,7 +39,6 @@ public class MainRVAdapter extends RecyclerView.Adapter<MainRVAdapter.RVAdapterH
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.item_mr_tv_title);
             ivCover = (ImageView) itemView.findViewById(R.id.item_mr_iv_cover);
-
         }
     }
 

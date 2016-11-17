@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="im.unico.customjcvideo.ui.VideoDetail">
     <RelativeLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/vd_title_layout"
         android:layout_width="match_parent"
         android:layout_height="45dp">
@@ -33,7 +33,7 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+    <im.unico.customjcvideo.widget.MyJCVideoStandard
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/vd_video_player"/>

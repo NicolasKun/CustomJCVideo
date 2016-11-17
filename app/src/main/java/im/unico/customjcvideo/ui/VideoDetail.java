@@ -1,6 +1,7 @@
 package im.unico.customjcvideo.ui;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -9,25 +10,29 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fm.jiecao.jcvideoplayer_lib.JCMediaManager;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 import im.unico.customjcvideo.R;
+import im.unico.customjcvideo.widget.MyJCVideoStandard;
 
-public class VideoDetail extends AppCompatActivity {
+/**
+ * 视频源来自 七牛云
+ */
+public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.OnClickCustomBtnListener {
 
     @BindView(R.id.layout_title_iv_back)
     ImageView layoutTitleIvBack;
     @BindView(R.id.vd_title_layout)
     RelativeLayout vdTitleLayout;
-    @BindView(R.id.vd_video_player)
-    JCVideoPlayerStandard vdVideoPlayer;
     @BindView(R.id.layout_title_tv_title)
     TextView layoutTitleTvTitle;
+    @BindView(R.id.vd_video_player)
+    MyJCVideoStandard vdVideoPlayer;
 
     private String vTitle;
     private String vPath;
@@ -44,6 +49,10 @@ public class VideoDetail extends AppCompatActivity {
     }
 
     private void init() {
+
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));*/
+
         layoutTitleTvTitle.setText(vTitle);
         setVideoPlayerDisplay();
 
@@ -53,6 +62,8 @@ public class VideoDetail extends AppCompatActivity {
                 ""
         );
 
+        vdVideoPlayer.customBtn.setImageResource(R.mipmap.fenxiang);
+        vdVideoPlayer.setCustomBtnListener(this);
     }
 
     //设置视频播放大小为 16/9
@@ -75,7 +86,6 @@ public class VideoDetail extends AppCompatActivity {
         finish();
     }
 
-
     @Override
     public void onBackPressed() {
         if (JCVideoPlayer.backPress()) {
@@ -89,8 +99,6 @@ public class VideoDetail extends AppCompatActivity {
         super.onPause();
         int state = vdVideoPlayer.getState();
         if (vdVideoPlayer != null && state == JCVideoPlayer.CURRENT_STATE_PLAYING) {
-            //vdVideoPlayer.setUp(paths[abs], JCVideoPlayer.SCREEN_LAYOUT_LIST, "");
-            //vdVideoPlayer.startButton.performClick();
             JCMediaManager.instance().mediaPlayer.pause();
             vdVideoPlayer.setUiWitStateAndScreen(JCVideoPlayer.CURRENT_STATE_PAUSE);
         }
@@ -100,5 +108,16 @@ public class VideoDetail extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         JCVideoPlayer.releaseAllVideos();
+    }
+
+
+    @Override
+    public void onCustom() {
+        Toast.makeText(this, "第三方分享", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onBack() {
+        finish();
     }
 }
