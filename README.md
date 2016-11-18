@@ -20,7 +20,7 @@ JCVideoPlayer.releaseAllVideos();
 而想让其单纯的暂停视频呢?
 我们可以这样做
 ```
-@Override
+    @Override
     protected void onPause() {
         super.onPause();
         int state = vdVideoPlayer.getState();  //视频目前的状态
