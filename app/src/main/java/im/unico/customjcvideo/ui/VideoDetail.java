@@ -50,10 +50,9 @@ public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.
 
     private void init() {
 
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            getWindow().setStatusBarColor(getResources().getColor(R.color.color_grey_900));
 
-        layoutTitleTvTitle.setText(vTitle);
         setVideoPlayerDisplay();
 
         vdVideoPlayer.setUp(
@@ -63,6 +62,7 @@ public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.
         );
 
         vdVideoPlayer.customBtn.setImageResource(R.mipmap.fenxiang);
+        vdVideoPlayer.titleTextView.setText(vTitle);
         vdVideoPlayer.setCustomBtnListener(this);
     }
 
