@@ -18,6 +18,13 @@ JCVideoPlayer.releaseAllVideos();
 所以这是用在onDestroy()的
 
 而想让其单纯的暂停视频呢?
+
+可以使用如下方法
+```
+vdVideoPlayer.startButton.performClick();
+```
+实测效果不佳
+
 我们可以这样做
 ```
 @Override
