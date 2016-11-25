@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import fm.jiecao.jcvideoplayer_lib.JCMediaManager;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 import im.unico.customjcvideo.R;
 
@@ -138,7 +139,36 @@ public class MyJCVideoStandard extends JCVideoPlayerStandard {
         void onCustom();
 
         void onBack();
+
     }
 
 
+    @Override
+    public int getCurrentPositionWhenPlaying() {
+
+        return super.getCurrentPositionWhenPlaying();
+    }
+
+    @Override
+    public int getDuration() {
+        return super.getDuration();
+    }
+
+    public class MyTimerTask extends JCVideoPlayer.ProgressTimerTask{
+        @Override
+        public void run() {
+            super.run();
+            if (currentState == CURRENT_STATE_PLAYING || currentState == CURRENT_STATE_PAUSE || currentState == CURRENT_STATE_PLAYING_BUFFERING_START) {
+                int positionWhenPlaying = getCurrentPositionWhenPlaying();
+                int duration = getDuration();
+
+            }
+        }
+    }
+
+    @Override
+    public void onPrepared() {
+        super.onPrepared();
+
+    }
 }

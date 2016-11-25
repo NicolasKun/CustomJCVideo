@@ -97,9 +97,9 @@ public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.
     @Override
     protected void onPause() {
         super.onPause();
-        int state = vdVideoPlayer.getState();
-        if (vdVideoPlayer != null && state == JCVideoPlayer.CURRENT_STATE_PLAYING) {
-            JCMediaManager.instance().mediaPlayer.pause();
+        int state = vdVideoPlayer.getState();  //视频目前的状态
+        if (vdVideoPlayer != null && state == JCVideoPlayer.CURRENT_STATE_PLAYING) { //如果正在播放
+            JCMediaManager.instance().mediaPlayer.pause();  //暂停 ↓并将UI设置为暂停时的状态
             vdVideoPlayer.setUiWitStateAndScreen(JCVideoPlayer.CURRENT_STATE_PAUSE);
         }
     }
@@ -120,4 +120,6 @@ public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.
     public void onBack() {
         finish();
     }
+
+
 }
