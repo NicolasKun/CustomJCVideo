@@ -53,6 +53,5 @@ public class MainActivity extends AppCompatActivity {
         mainRecyclerView.setLayoutManager(layoutManager);
 
         mainRecyclerView.setAdapter(adapter);
-
     }
 }

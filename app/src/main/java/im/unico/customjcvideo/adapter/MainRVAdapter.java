@@ -54,9 +54,9 @@ public class MainRVAdapter extends RecyclerView.Adapter<MainRVAdapter.RVAdapterH
     public void onBindViewHolder(RVAdapterHolder holder, int position) {
         final String vPath = data.get(position).getVPath();
         final String vTitle = data.get(position).getVTitle();
+        final String vCover = data.get(position).getVCover();
         holder.tvTitle.setText(vTitle);
 
-        String vCover = data.get(position).getVCover();
         if (vCover != null && !vCover.equals("")) {
             Glide.with(context).load(vCover).into(holder.ivCover);
         }
@@ -68,6 +68,7 @@ public class MainRVAdapter extends RecyclerView.Adapter<MainRVAdapter.RVAdapterH
                 context.startActivity(new Intent(context, VideoDetail.class)
                         .putExtra("vPath", vPath)
                         .putExtra("vTitle", vTitle)
+                        .putExtra("vCover", vCover)
                 );
             }
         });

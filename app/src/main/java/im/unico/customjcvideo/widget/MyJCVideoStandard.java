@@ -110,7 +110,7 @@ public class MyJCVideoStandard extends JCVideoPlayerStandard {
             else customBtn.setVisibility(GONE);
 
             if (currentState == CURRENT_STATE_PLAYING) {
-                JCMediaManager.instance().mediaPlayer.pause();
+                //JCMediaManager.instance().mediaPlayer.pause();
                 setUiWitStateAndScreen(CURRENT_STATE_PAUSE);
             }
             listener.onCustom();
