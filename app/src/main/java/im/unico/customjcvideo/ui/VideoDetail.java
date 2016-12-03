@@ -47,6 +47,8 @@ public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.
     private String vPath;
     private String vCover;
 
+    private static final int PREVIEW = 15000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +62,6 @@ public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.
     }
 
     private void init() {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setStatusBarColor(getResources().getColor(R.color.color_grey_900));
 
@@ -75,8 +76,8 @@ public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.
         vdVideoPlayer.customBtn.setImageResource(R.mipmap.fenxiang);
         vdVideoPlayer.titleTextView.setText(vTitle);
         vdVideoPlayer.setCustomBtnListener(this);
-        vdVideoPlayer.setFullScreenVisiable(View.GONE);
-        vdVideoPlayer.setOnJCPlayingProgressListener(this);
+        vdVideoPlayer.setFullScreenVisiable(View.GONE); //如果是预览状态则不显示全屏按钮
+        vdVideoPlayer.setOnJCPlayingProgressListener(this); //设置播放时间回调
     }
 
     //设置视频播放大小为 16/9
@@ -112,7 +113,7 @@ public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.
         super.onPause();
         int state = vdVideoPlayer.getState();  //视频目前的状态
         if (vdVideoPlayer != null && state == JCVideoPlayer.CURRENT_STATE_PLAYING) { //如果正在播放
-            //JCMediaManager.instance().mediaPlayer.pause();  //暂停 ↓并将UI设置为暂停时的状态
+            JCMediaManager.instance().mediaPlayer.pause();  //暂停 ↓并将UI设置为暂停时的状态
             vdVideoPlayer.setUiWitStateAndScreen(JCVideoPlayer.CURRENT_STATE_PAUSE);
         }
     }
@@ -138,7 +139,7 @@ public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.
     public void onProgress(int duration, int progress) {
         //子线程中
         Log.e(TAG, "onProgress: " + duration + " ---- " + progress);
-        if (duration >= 15000 && progress >= 15000) {
+        if (duration >= PREVIEW && progress >= PREVIEW) {
             handler.sendEmptyMessage(0);
         }
     }
@@ -163,4 +164,6 @@ public class VideoDetail extends AppCompatActivity implements MyJCVideoStandard.
             }
         }
     };
+
+
 }

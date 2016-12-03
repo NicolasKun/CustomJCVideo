@@ -772,12 +772,19 @@ public abstract class JCVideoPlayer extends FrameLayout implements JCMediaPlayer
     }
 
     //进度时间控制器
+    /*
+    //Log.v(TAG, "onProgressUpdate " + position + "/" + duration + " [" + this.hashCode() + "] ");
+    //Log.e(TAG, "run: >>>屏幕状态>>> " + currentScreen + "  >>>播放状态>>> " + currentState);
+    if (playingProgressListener!=null)
+        playingProgressListener.onProgress(duration, position);
+     */
     public class ProgressTimerTask extends TimerTask {
         @Override
         public void run() {
             if (currentState == CURRENT_STATE_PLAYING || currentState == CURRENT_STATE_PAUSE || currentState == CURRENT_STATE_PLAYING_BUFFERING_START) {
                 int position = getCurrentPositionWhenPlaying();
                 int duration = getDuration();
+
                 //Log.v(TAG, "onProgressUpdate " + position + "/" + duration + " [" + this.hashCode() + "] ");
                 //Log.e(TAG, "run: >>>屏幕状态>>> " + currentScreen + "  >>>播放状态>>> " + currentState);
                 if (playingProgressListener!=null)
@@ -789,7 +796,6 @@ public abstract class JCVideoPlayer extends FrameLayout implements JCMediaPlayer
                         setTextAndProgress(JCMediaManager.instance().bufferPercent);
                     }
                 });
-
             }
         }
     }
